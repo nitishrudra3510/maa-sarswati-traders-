@@ -6,6 +6,20 @@
     },
     "dependencies": {
         "bcryptjs": "^3.0.2",
-        "express": "^4.21.2"
-    }
+        "express": "^4.21.2",
+        "mongoose": "^8.14.3"
+    },
+    "description": "Welcome to the official website of Maa Sarswati Traders. Click on any of the links below to access different sections of our website.",
+    "main": "script.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nitishrudra3510/maa-saraswati-traders.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/nitishrudra3510/maa-saraswati-traders/issues"
+    },
+    "homepage": "https://github.com/nitishrudra3510/maa-saraswati-traders#readme"
 }

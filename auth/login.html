@@ -54,12 +54,12 @@
                 </div>
 
                 <div>
-                    <button type="submit" 
+                    <button type="submit" id="loginBtn"
                         class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#2C5530] hover:bg-[#1E3B21] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2C5530]">
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                             <i class="fas fa-lock"></i>
                         </span>
-                        Sign in
+                        <span id="loginText">Sign in</span>
                     </button>
                 </div>
             </form>
@@ -67,14 +67,24 @@
     </div>
 
     <script>
+    const BACKEND_URL = 'http://localhost:3000';
+    
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
         e.preventDefault();
+        
+        // Change button text to loading
+        const loginBtn = document.getElementById('loginBtn');
+        const loginText = document.getElementById('loginText');
+        
+        loginBtn.disabled = true;
+        loginText.textContent = 'Signing in...';
+        loginBtn.classList.add('opacity-75');
         
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         
         try {
-            const response = await fetch('/api/login', {
+            const response = await fetch(`${BACKEND_URL}/api/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -85,13 +95,36 @@
             const data = await response.json();
             
             if (response.ok) {
-                alert('Login successful!');
-                window.location.href = data.redirect;
+                // No alert - direct redirect like real websites
+                loginText.textContent = 'Success!';
+                
+                // Automatic redirect - check if Go Live or direct backend
+                setTimeout(() => {
+                    if (window.location.protocol === 'file:' || window.location.port === '5500') {
+                        // If using Go Live, redirect to your main website URL
+                        // Replace this with your actual main website URL
+                        window.location.href = '../index.html'; // or your main page
+                    } else {
+                        // If using direct backend, redirect to main route
+                        window.location.href = '/'; // This will serve your main interface
+                    }
+                }, 500);
+                
             } else {
+                // Show error and reset button
                 alert(data.error);
+                loginBtn.disabled = false;
+                loginText.textContent = 'Sign in';
+                loginBtn.classList.remove('opacity-75');
             }
         } catch (error) {
-            alert('Something went wrong!');
+            console.error('Login error:', error);
+            alert('Connection error! Make sure backend is running on http://localhost:3000');
+            
+            // Reset button
+            loginBtn.disabled = false;
+            loginText.textContent = 'Sign in';
+            loginBtn.classList.remove('opacity-75');
         }
     });
     </script>

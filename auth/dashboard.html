@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Maa Saraswati Traders</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-[#2C5530] shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-white text-xl font-bold">Maa Saraswati Traders</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-white">Welcome back!</span>
+                    <button onclick="logout()" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div class="px-4 py-6 sm:px-0">
+            <h1 class="text-3xl font-bold text-gray-900 mb-8">Dashboard</h1>
+            
+            <!-- Statistics Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="p-5">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-users text-[#2C5530] text-2xl"></i>
+                            </div>
+                            <div class="ml-5 w-0 flex-1">
+                                <dl>
+                                    <dt class="text-sm font-medium text-gray-500 truncate">Total Users</dt>
+                                    <dd class="text-lg font-medium text-gray-900" id="totalUsers">Loading...</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="p-5">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-chart-line text-[#2C5530] text-2xl"></i>
+                            </div>
+                            <div class="ml-5 w-0 flex-1">
+                                <dl>
+                                    <dt class="text-sm font-medium text-gray-500 truncate">Active Today</dt>
+                                    <dd class="text-lg font-medium text-gray-900">24</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="p-5">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-shopping-cart text-[#2C5530] text-2xl"></i>
+                            </div>
+                            <div class="ml-5 w-0 flex-1">
+                                <dl>
+                                    <dt class="text-sm font-medium text-gray-500 truncate">Orders</dt>
+                                    <dd class="text-lg font-medium text-gray-900">156</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Users Table -->
+            <div class="bg-white shadow overflow-hidden sm:rounded-md">
+                <div class="px-4 py-5 sm:px-6">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Recent Users</h3>
+                    <p class="mt-1 max-w-2xl text-sm text-gray-500">Latest registered users</p>
+                </div>
+                <div id="usersList" class="overflow-x-auto">
+                    <div class="p-4 text-center text-gray-500">Loading users...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    const BACKEND_URL = 'http://localhost:3000';
+
+    // Load users count and list
+    async function loadDashboardData() {
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/users`);
+            const users = await response.json();
+            
+            // Update total users count
+            document.getElementById('totalUsers').textContent = users.length;
+            
+            // Update users table
+            const usersList = document.getElementById('usersList');
+            if (users.length > 0) {
+                usersList.innerHTML = `
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Role</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Joined</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            ${users.slice(0, 5).map(user => `
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${user.name}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${user.email}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${user.role || 'employee'}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${new Date(user.createdAt).toLocaleDateString()}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+            } else {
+                usersList.innerHTML = '<div class="p-4 text-center text-gray-500">No users found</div>';
+            }
+        } catch (error) {
+            console.error('Error loading dashboard data:', error);
+            document.getElementById('totalUsers').textContent = 'Error';
+        }
+    }
+
+    // Logout function
+    function logout() {
+        if (confirm('Are you sure you want to logout?')) {
+            window.location.href = 'login.html';
+        }
+    }
+
+    // Load data when page loads
+    window.onload = loadDashboardData;
+
+    // Refresh data every 30 seconds
+    setInterval(loadDashboardData, 30000);
+    </script>
+</body>
+</html> 

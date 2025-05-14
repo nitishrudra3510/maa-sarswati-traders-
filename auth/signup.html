@@ -56,6 +56,9 @@
     </div>
 
     <script>
+    // Backend URL - works with both Go Live and direct backend
+    const BACKEND_URL = 'http://localhost:3000';
+    
     document.getElementById('signupForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -68,7 +71,7 @@
         };
         
         try {
-            const response = await fetch('/api/signup', {
+            const response = await fetch(`${BACKEND_URL}/api/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -80,12 +83,20 @@
             
             if (response.ok) {
                 alert('Account created successfully!');
-                window.location.href = data.redirect;
+                // Check if running on Go Live or direct backend
+                if (window.location.protocol === 'file:' || window.location.port === '5500') {
+                    // Go Live - redirect to login
+                    window.location.href = 'login.html';
+                } else {
+                    // Direct backend - use backend redirect
+                    window.location.href = data.redirect;
+                }
             } else {
                 alert(data.error);
             }
         } catch (error) {
-            alert('Something went wrong!');
+            console.error('Signup error:', error);
+            alert('Connection error! Make sure backend is running on http://localhost:3000');
         }
     });
     </script>
