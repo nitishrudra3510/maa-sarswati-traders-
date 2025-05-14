@@ -5,15 +5,15 @@ Welcome to the official website of Maa Sarswati Traders. Click on any of the lin
 ## Quick Links 🔗
 
 ### Main Pages
-- [Homepage](https://nitishrudra3510.github.io/maa-saraswati-traders/)
-- [About Us](https://nitishrudra3510.github.io/maa-saraswati-traders/#about)
-- [Our Products](https://nitishrudra3510.github.io/maa-saraswati-traders/#products)
-- [Gallery](https://nitishrudra3510.github.io/maa-saraswati-traders/#gallery)
-- [Contact Us](https://nitishrudra3510.github.io/maa-saraswati-traders/#contact)
+- [Homepage](https://nitishrudra3510.github.io/maa-sarswati-traders/)
+- [About Us](https://nitishrudra3510.github.io/maa-sarswati-traders/#about)
+- [Our Products](https://nitishrudra3510.github.io/maa-sarswati-traders/#products)
+- [Gallery](https://nitishrudra3510.github.io/maa-sarswati-traders/#gallery)
+- [Contact Us](https://nitishrudra3510.github.io/maa-sarswati-traders/#contact)
 
 ### Authentication
-- [Login](https://nitishrudra3510.github.io/maa-saraswati-traders/auth/login.html)
-- [Sign Up](https://nitishrudra3510.github.io/maa-saraswati-traders/auth/signup.html)
+- [Login](https://nitishrudra3510.github.io/maa-sarswati-traders/auth/login.html)
+- [Sign Up](https://nitishrudra3510.github.io/maa-sarswati-traders/auth/signup.html)
 
 ## Contact Information 📞
 - **Address:** Traupur, Narhat, Nawada, Bihar - 805112
@@ -23,7 +23,7 @@ Welcome to the official website of Maa Sarswati Traders. Click on any of the lin
 ## Quick Access QR Code
 Scan this QR code to visit our website on your mobile device:
 ```qr
-https://nitishrudra3510.github.io/maa-saraswati-traders/
+https://nitishrudra3510.github.io/maa-sarswati-traders/
 ```
 
 ## Business Hours ⏰
@@ -39,17 +39,17 @@ https://nitishrudra3510.github.io/maa-saraswati-traders/
 - Agricultural Products
 
 ## Website Sections
-1. **Home Page**: [View Homepage](https://nitishrudra3510.github.io/maa-saraswati-traders/)
-2. **About Section**: [View About Us](https://nitishrudra3510.github.io/maa-saraswati-traders/#about)
-3. **Products Section**: [View Products](https://nitishrudra3510.github.io/maa-saraswati-traders/#products)
-4. **Gallery Section**: [View Gallery](https://nitishrudra3510.github.io/maa-saraswati-traders/#gallery)
-5. **Contact Section**: [View Contact](https://nitishrudra3510.github.io/maa-saraswati-traders/#contact)
-6. **Login Page**: [View Login](https://nitishrudra3510.github.io/maa-saraswati-traders/auth/login.html)
-7. **Sign Up Page**: [View Sign Up](https://nitishrudra3510.github.io/maa-saraswati-traders/auth/signup.html)
+1. **Home Page**: [View Homepage](https://nitishrudra3510.github.io/maa-sarswati-traders/)
+2. **About Section**: [View About Us](https://nitishrudra3510.github.io/maa-sarswati-traders/#about)
+3. **Products Section**: [View Products](https://nitishrudra3510.github.io/maa-sarswati-traders/#products)
+4. **Gallery Section**: [View Gallery](https://nitishrudra3510.github.io/maa-sarswati-traders/#gallery)
+5. **Contact Section**: [View Contact](https://nitishrudra3510.github.io/maa-sarswati-traders/#contact)
+6. **Login Page**: [View Login](https://nitishrudra3510.github.io/maa-sarswati-traders/auth/login.html)
+7. **Sign Up Page**: [View Sign Up](https://nitishrudra3510.github.io/maa-sarswati-traders/auth/signup.html)
 
 ## Repository Structure
 ```
-maa-saraswati-traders/
+maa-sarswati-traders/
 ├── index.html          # Main website file
 ├── styles.css          # Website styles
 ├── script.js           # Website scripts
@@ -60,6 +60,6 @@ maa-saraswati-traders/
 ```
 
 ## How to Access
-1. Visit the main website: [https://nitishrudra3510.github.io/maa-saraswati-traders/](https://nitishrudra3510.github.io/maa-saraswati-traders/)
+1. Visit the main website: [https://nitishrudra3510.github.io/maa-sarswati-traders/](https://nitishrudra3510.github.io/maa-sarswati-traders/)
 2. Use the navigation menu to access different sections
 3. For authentication, use the login/signup links in the header 
