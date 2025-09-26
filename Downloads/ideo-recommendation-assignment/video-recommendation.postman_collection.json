@@ -1,0 +1,540 @@
+{
+	"info": {
+		"_postman_id": "video-recommendation-engine",
+		"name": "Video Recommendation Engine API",
+		"description": "Complete Postman collection for Video Recommendation Engine with personalized and category-based video recommendations using deep neural networks and collaborative filtering.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "video-recommendation"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/health",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"health"
+					]
+				},
+				"description": "Check if the recommendation service is healthy and running."
+			},
+			"response": [
+				{
+					"name": "Healthy Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"healthy\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Personalized Feed",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/v1/feed?username={{username}}&limit={{limit}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"feed"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"description": "Username for personalized recommendations"
+						},
+						{
+							"key": "limit",
+							"value": "{{limit}}",
+							"description": "Maximum number of recommendations (1-20)"
+						}
+					]
+				},
+				"description": "Returns personalized video recommendations based on user preferences and engagement history using collaborative filtering algorithm."
+			},
+			"response": [
+				{
+					"name": "Personalized Recommendations",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/feed?username=john_doe&limit=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"feed"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "john_doe"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"recommendations\": [\n        {\n            \"video_id\": \"33333333-3333-3333-3333-333333333333\",\n            \"title\": \"Motivational Success Story\",\n            \"category\": \"motivational\",\n            \"description\": \"An inspiring story about overcoming challenges\",\n            \"posted_at\": \"2024-01-15T10:00:00Z\",\n            \"recommendation_score\": 0.95,\n            \"recommendation_reason\": \"Similar users who liked your videos also enjoyed this\"\n        }\n    ],\n    \"total_count\": 1,\n    \"user_id\": \"12345678-1234-1234-1234-123456789012\",\n    \"algorithm_used\": \"collaborative_filtering\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Category Feed",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/v1/feed/category?username={{username}}&project_code={{project_code}}&limit={{limit}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"feed",
+						"category"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"description": "Username for recommendations"
+						},
+						{
+							"key": "project_code",
+							"value": "{{project_code}}",
+							"description": "Category or project code (e.g., fitness, business, motivational)"
+						},
+						{
+							"key": "limit",
+							"value": "{{limit}}",
+							"description": "Maximum number of recommendations (1-20)"
+						}
+					]
+				},
+				"description": "Returns video recommendations filtered by specific category or project code."
+			},
+			"response": [
+				{
+					"name": "Category Recommendations",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/feed/category?username=mary_smith&project_code=fitness&limit=3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"feed",
+								"category"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "mary_smith"
+								},
+								{
+									"key": "project_code",
+									"value": "fitness"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"recommendations\": [\n        {\n            \"video_id\": \"88888888-8888-8888-8888-888888888888\",\n            \"title\": \"Morning Workout Routine\",\n            \"category\": \"fitness\",\n            \"description\": \"Start your day with energy\",\n            \"posted_at\": \"2024-01-17T10:00:00Z\",\n            \"recommendation_score\": 0.9,\n            \"recommendation_reason\": \"Popular fitness content\"\n        }\n    ],\n    \"total_count\": 1,\n    \"user_id\": \"12345678-1234-1234-1234-123456789012\",\n    \"algorithm_used\": \"category_filtering\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Neural Network Suggestions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/v1/neural-network-suggestions",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"neural-network-suggestions"
+					]
+				},
+				"description": "Returns suggestions for implementing deep neural networks in the recommendation system."
+			},
+			"response": [
+				{
+					"name": "Neural Network Suggestions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/neural-network-suggestions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"neural-network-suggestions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"neural_network_suggestions\": {\n        \"approach\": \"Deep Learning Recommendation System\",\n        \"architecture\": \"Multi-layer Feedforward Neural Network\",\n        \"input_features\": [\n            \"User embedding (learned user representation)\",\n            \"Video embedding (content features)\",\n            \"Interaction history (view, like, inspire, rating)\"\n        ]\n    },\n    \"implementation_status\": \"planned\",\n    \"current_algorithm\": \"collaborative_filtering\"\n}"
+				}
+			]
+		},
+		{
+			"name": "External API - Get Viewed Posts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Flic-Token",
+						"value": "{{flic_token}}",
+						"description": "Authentication token for Socialverse API"
+					}
+				],
+				"url": {
+					"raw": "{{api_base_url}}/posts/view?page=1&page_size=1000&resonance_algorithm={{resonance_algorithm}}",
+					"host": [
+						"{{api_base_url}}"
+					],
+					"path": [
+						"posts",
+						"view"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "1000"
+						},
+						{
+							"key": "resonance_algorithm",
+							"value": "{{resonance_algorithm}}"
+						}
+					]
+				},
+				"description": "Fetch viewed posts from Socialverse API with Flic-Token authentication."
+			}
+		},
+		{
+			"name": "External API - Get Liked Posts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Flic-Token",
+						"value": "{{flic_token}}",
+						"description": "Authentication token for Socialverse API"
+					}
+				],
+				"url": {
+					"raw": "{{api_base_url}}/posts/like?page=1&page_size=1000&resonance_algorithm={{resonance_algorithm}}",
+					"host": [
+						"{{api_base_url}}"
+					],
+					"path": [
+						"posts",
+						"like"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "1000"
+						},
+						{
+							"key": "resonance_algorithm",
+							"value": "{{resonance_algorithm}}"
+						}
+					]
+				},
+				"description": "Fetch liked posts from Socialverse API with Flic-Token authentication."
+			}
+		},
+		{
+			"name": "External API - Get Inspired Posts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Flic-Token",
+						"value": "{{flic_token}}",
+						"description": "Authentication token for Socialverse API"
+					}
+				],
+				"url": {
+					"raw": "{{api_base_url}}/posts/inspire?page=1&page_size=1000&resonance_algorithm={{resonance_algorithm}}",
+					"host": [
+						"{{api_base_url}}"
+					],
+					"path": [
+						"posts",
+						"inspire"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "1000"
+						},
+						{
+							"key": "resonance_algorithm",
+							"value": "{{resonance_algorithm}}"
+						}
+					]
+				},
+				"description": "Fetch inspired posts from Socialverse API with Flic-Token authentication."
+			}
+		},
+		{
+			"name": "External API - Get Rated Posts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Flic-Token",
+						"value": "{{flic_token}}",
+						"description": "Authentication token for Socialverse API"
+					}
+				],
+				"url": {
+					"raw": "{{api_base_url}}/posts/rating?page=1&page_size=1000&resonance_algorithm={{resonance_algorithm}}",
+					"host": [
+						"{{api_base_url}}"
+					],
+					"path": [
+						"posts",
+						"rating"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "1000"
+						},
+						{
+							"key": "resonance_algorithm",
+							"value": "{{resonance_algorithm}}"
+						}
+					]
+				},
+				"description": "Fetch rated posts from Socialverse API with Flic-Token authentication."
+			}
+		},
+		{
+			"name": "External API - Get All Posts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Flic-Token",
+						"value": "{{flic_token}}",
+						"description": "Authentication token for Socialverse API"
+					}
+				],
+				"url": {
+					"raw": "{{api_base_url}}/posts/summary/get?page=1&page_size=1000",
+					"host": [
+						"{{api_base_url}}"
+					],
+					"path": [
+						"posts",
+						"summary",
+						"get"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "1000"
+						}
+					]
+				},
+				"description": "Fetch all posts summary from Socialverse API with Flic-Token authentication."
+			}
+		},
+		{
+			"name": "External API - Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Flic-Token",
+						"value": "{{flic_token}}",
+						"description": "Authentication token for Socialverse API"
+					}
+				],
+				"url": {
+					"raw": "{{api_base_url}}/users/get_all?page=1&page_size=1000",
+					"host": [
+						"{{api_base_url}}"
+					],
+					"path": [
+						"users",
+						"get_all"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "1000"
+						}
+					]
+				},
+				"description": "Fetch all users from Socialverse API with Flic-Token authentication."
+			}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		},
+		{
+			"key": "api_base_url",
+			"value": "https://api.socialverseapp.com",
+			"type": "string"
+		},
+		{
+			"key": "flic_token",
+			"value": "flic_11d3da28e403d182c36a3530453e290add87d0b4a40ee50f17611f180d47956f",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "testuser",
+			"type": "string"
+		},
+		{
+			"key": "project_code",
+			"value": "fitness",
+			"type": "string"
+		},
+		{
+			"key": "limit",
+			"value": "5",
+			"type": "string"
+		},
+		{
+			"key": "resonance_algorithm",
+			"value": "resonance_algorithm_cjsvervb7dbhss8bdrj89s44jfjdbsjd0xnjkbvuire8zcjwerui3njfbvsujc5if",
+			"type": "string"
+		}
+	]
+}

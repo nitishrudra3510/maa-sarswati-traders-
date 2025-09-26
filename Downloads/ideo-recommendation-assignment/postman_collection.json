@@ -1,0 +1,41 @@
+{
+  "info": {
+    "name": "Video Recommendation Engine",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Personalized Feed",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8000/feed?username=testuser",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["feed"],
+          "query": [{"key": "username", "value": "testuser"}]
+        }
+      }
+    },
+    {
+      "name": "Get Category Feed",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8000/feed?username=testuser&project_code=fitness",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["feed"],
+          "query": [
+            {"key": "username", "value": "testuser"},
+            {"key": "project_code", "value": "fitness"}
+          ]
+        }
+      }
+    }
+  ]
+}
+
+

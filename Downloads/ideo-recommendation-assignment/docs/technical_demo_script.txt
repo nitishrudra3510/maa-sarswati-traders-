@@ -1,0 +1,164 @@
+VIDEO RECOMMENDATION ENGINE - TECHNICAL DEMO SCRIPT
+Duration: 3-5 minutes
+Presenter: Alex
+
+[SCENE 1: Setup and Overview - 30 seconds]
+"Let's start by examining the project structure and setting up the FastAPI server. I'll show you the key components: the recommendation service, data collection layer, and database models."
+
+[0:30 - 1:00] Show project structure:
+- app/main.py (FastAPI application)
+- app/services/recommendation.py (collaborative filtering)
+- app/services/data_collection.py (external API integration)
+- app/models/database.py (PostgreSQL models)
+
+[SCENE 2: Starting the Server - 30 seconds]
+"Now let's start the FastAPI server and verify it's running correctly."
+
+[1:00 - 1:30] Terminal commands:
+```bash
+# Activate virtual environment
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run database migrations
+alembic upgrade head
+
+# Start the server
+uvicorn app.main:app --reload
+```
+
+[1:30 - 2:00] Show server startup logs and health check:
+- Visit http://127.0.0.1:8000/health
+- Show successful response: {"status": "healthy"}
+
+[SCENE 3: API Documentation - 30 seconds]
+"Let's explore the interactive API documentation to understand the available endpoints."
+
+[2:00 - 2:30] Navigate to http://127.0.0.1:8000/docs:
+- Show Swagger UI interface
+- Highlight key endpoints:
+  - GET /api/v1/feed (personalized recommendations)
+  - GET /api/v1/feed/category (category-based recommendations)
+  - GET /api/v1/health (health check)
+
+[SCENE 4: Testing Personalized Recommendations - 60 seconds]
+"Now let's test the personalized recommendation endpoint using Postman."
+
+[2:30 - 3:00] Postman demonstration:
+- Import the provided Postman collection
+- Test GET /api/v1/feed?username=john_doe&limit=5
+- Show successful response with recommendation data
+- Explain the collaborative filtering algorithm
+
+[3:00 - 3:30] Show response structure:
+```json
+{
+    "recommendations": [
+        {
+            "video_id": "33333333-3333-3333-3333-333333333333",
+            "title": "Motivational Success Story",
+            "category": "motivational",
+            "recommendation_score": 0.95,
+            "recommendation_reason": "Similar users who liked your videos also enjoyed this"
+        }
+    ],
+    "algorithm_used": "collaborative_filtering"
+}
+```
+
+[SCENE 5: Testing Category-Based Recommendations - 45 seconds]
+"Let's test the category-based recommendation endpoint for fitness content."
+
+[3:30 - 4:00] Postman demonstration:
+- Test GET /api/v1/feed/category?username=mary_smith&project_code=fitness&limit=3
+- Show filtered results for fitness category
+- Explain category filtering logic
+
+[4:00 - 4:15] Show response:
+```json
+{
+    "recommendations": [
+        {
+            "video_id": "88888888-8888-8888-8888-888888888888",
+            "title": "Morning Workout Routine",
+            "category": "fitness",
+            "recommendation_reason": "Popular fitness content"
+        }
+    ],
+    "algorithm_used": "category_filtering"
+}
+```
+
+[SCENE 6: Error Handling Demonstration - 30 seconds]
+"Let's test the error handling by providing invalid parameters."
+
+[4:15 - 4:30] Error scenarios:
+- Test with empty username: GET /api/v1/feed?username=
+- Show 400 Bad Request response
+- Test with invalid project_code
+- Show appropriate error messages
+
+[4:30 - 4:45] Show error response:
+```json
+{
+    "error": "Username cannot be empty",
+    "detail": "Request to /api/v1/feed failed",
+    "timestamp": "2024-01-20T10:00:00Z"
+}
+```
+
+[SCENE 7: Cold Start Algorithm - 30 seconds]
+"Let's demonstrate the cold start algorithm for new users without engagement history."
+
+[4:45 - 5:00] Test with new user:
+- Test GET /api/v1/feed?username=newuser123
+- Show motivational content recommendations
+- Explain mood-based approach inspired by Empowerverse App
+
+[5:00 - 5:15] Show cold start response:
+```json
+{
+    "recommendations": [
+        {
+            "title": "Start Your Day with Purpose",
+            "category": "motivational",
+            "recommendation_reason": "Popular motivational content for new users"
+        }
+    ],
+    "algorithm_used": "cold_start_mood_based"
+}
+```
+
+[SCENE 8: Neural Network Suggestions - 30 seconds]
+"Finally, let's explore the neural network implementation suggestions for future enhancements."
+
+[5:15 - 5:45] Test neural network endpoint:
+- GET /api/v1/neural-network-suggestions
+- Show architecture recommendations
+- Explain future deep learning approach
+
+[SCENE 9: Conclusion - 15 seconds]
+"This completes our technical demonstration. The Video Recommendation Engine successfully provides personalized recommendations, handles edge cases, and is ready for production deployment with comprehensive error handling and monitoring."
+
+---
+TECHNICAL REQUIREMENTS:
+- Screen recording software (OBS Studio, Loom, or similar)
+- Postman application for API testing
+- Terminal/command prompt access
+- Web browser for API documentation
+- Stable internet connection
+
+VISUAL SUGGESTIONS:
+- Split screen showing code and API responses
+- Highlight important code sections
+- Use consistent color scheme
+- Clear, readable font sizes
+- Smooth transitions between scenes
+
+TIMING NOTES:
+- Total duration: 5 minutes 45 seconds
+- Allow buffer time for loading and transitions
+- Practice transitions between applications
+- Have backup plans for technical issues
